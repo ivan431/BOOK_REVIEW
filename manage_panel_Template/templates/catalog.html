@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+<style>
+   body {
+background: rgb(150,199,203);
+background: linear-gradient(90deg, rgba(150,199,203,1) 22%, rgba(91,148,111,0.7371323529411764) 30%, rgba(61,55,158,1) 46%, rgba(142,255,0,1) 66%);
+   }
+    header.item {
+    color:red
+    }
+</style>
+<h1>{{ title }}</h1>
+
+{{products}}
+
+{% for el in products %}
+<div class="card">
+    <h3>{{el.name}}</h3>
+    <h4>{{el.price}}</h4>
+    <h4>{{el.description}}</h4>
+
+</div>
+{% endfor %}
+
+{% endblock %}

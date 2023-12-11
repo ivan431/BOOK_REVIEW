@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>{{ title }}</h2>
+
+<form action="{% url 'feedbacks_page' %}" method="POST">
+ {% csrf_token %}
+ <label for="full_name">ФИО</label>
+ <input name="full_name" id="full_name" required>
+ <label for="email">Email</label>
+ <input name="email" id="email" required>
+ <label for="review_text">Текст отзыва</label>
+ <textarea name="review_text" id="review_text" required></textarea>
+ <label for="checked">Проверено</label>
+ <input type="checkbox" name="checked" id="checked">
+ <button type="submit">Отправить</button>
+</form>
+
+<!--{{ reviews }}-->
+<!--{% for review in reviews %}
+ <p>{{ review.full_name }}</p>
+ <p>{{ review.email }}</p>
+ <p>{{ review.review_text }}</p>
+{% endfor %}-->
+
+
+{% for review in reviews %}
+ <div style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 10px;">
+  <p style="font-weight: bold;"><strong>{{ review.full_name }}</strong></p>
+  <p>{{ review.email }}</p>
+  <p>{{ review.review_text }}</p>
+  {% if review.checked %}
+      <img style="width: 20px; height: 20px;" src="https://banner2.cleanpng.com/20180423/sse/kisspng-computer-icons-flag-icon-design-clip-art-various-actions-5adeaaab703491.7032042215245421234596.jpg">
+  {% endif %}
+ </div>
+{% endfor %}
+
+{% endblock %}
